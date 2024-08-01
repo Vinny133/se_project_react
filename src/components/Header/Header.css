@@ -1,7 +1,10 @@
+@import url(../../vendor/fonts.css);
+
 .header {
   display: flex;
   align-items: center;
   padding: 32px 0 28px;
+  font-family: "CabinetGrotesk-Bold";
 }
 
 .header__logo {
