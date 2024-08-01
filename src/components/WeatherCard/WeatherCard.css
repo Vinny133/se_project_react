@@ -8,8 +8,11 @@
 
 .weather-card__temp {
   color: white;
+  font-family: "CabinetGrotesk-Bold";
   font-size: 36px;
+  font-style: normal;
   line-height: 40px;
+  font-weight: 700;
   margin: 0;
   position: absolute;
   top: 20px;

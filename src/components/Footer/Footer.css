@@ -4,4 +4,9 @@
 .footer__text {
   margin: 171px 0 0;
   padding: 0 0 20px;
+  font-family: "CabinetGrotesk-Medium";
+  font-size: 20px;
+  font-style: normal;
+  line-height: 20px;
+  font-weight: 500;
 }

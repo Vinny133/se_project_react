@@ -10,7 +10,13 @@
   top: 15px;
   margin: 0;
   padding: 2px 21px;
+  color: #00000099;
   background-color: white;
+  font-family: "CabinetGrotesk-Bold";
+  font-size: 16px;
+  font-style: normal;
+  line-height: 20px;
+  font-weight: 700;
 }
 
 .card__image {
