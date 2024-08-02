@@ -16,6 +16,7 @@ function App() {
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
+  const [selectedButton, setSelectedButton] = useState("");
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -24,6 +25,10 @@ function App() {
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
+  };
+
+  const handleButtonClick = (evt) => {
+    setSelectedButton(evt.target.value);
   };
 
   const closeActiveModal = () => {
@@ -49,8 +54,9 @@ function App() {
       <ModalWithForm
         title="New garment"
         buttonText="Add garment"
-        activeModal={activeModal}
+        isOpen={activeModal === "add-garment"}
         onClose={closeActiveModal}
+        handleButtonClick={handleButtonClick}
       >
         <label htmlFor="name" className="modal__label">
           Name{" "}
@@ -73,21 +79,42 @@ function App() {
         <fieldset className="modal__radio-buttons">
           <legend className="modal__legend">Select the weather type:</legend>
           <label htmlFor="hot" className="modal__label modal__label_type_radio">
-            <input id="hot" type="radio" className="modal__radio-input" />
+            <input
+              id="hot"
+              type="radio"
+              className="modal__radio-input"
+              value="hot"
+              checked={selectedButton === "hot"}
+              onChange={handleButtonClick}
+            />
             Hot
           </label>
           <label
             htmlFor="warm"
             className="modal__label modal__label_type_radio"
           >
-            <input id="warm" type="radio" className="modal__radio-input" />
+            <input
+              id="warm"
+              type="radio"
+              className="modal__radio-input"
+              value="warm"
+              checked={selectedButton === "warm"}
+              onChange={handleButtonClick}
+            />
             Warm
           </label>
           <label
             htmlFor="cold"
             className="modal__label modal__label_type_radio"
           >
-            <input id="cold" type="radio" className="modal__radio-input" />
+            <input
+              id="cold"
+              type="radio"
+              className="modal__radio-input"
+              value="cold"
+              checked={selectedButton === "cold"}
+              onChange={handleButtonClick}
+            />
             Cold
           </label>
         </fieldset>
