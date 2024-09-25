@@ -1,0 +1,14 @@
+.clothes-section {
+}
+
+.clothes-section__header {
+  display: flex;
+}
+
+.clothes-section__button {
+  border: none;
+  margin-left: 20px;
+  background-color: transparent;
+  color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}

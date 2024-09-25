@@ -85,7 +85,12 @@
   color: white;
   border: none;
   background-color: black;
-  opacity: 0.3;
+  transition: opacity 0.2s linear;
+  cursor: pointer;
+}
+
+.modal__submit:hover {
+  opacity: 0.6;
 }
 
 .modal__legend {

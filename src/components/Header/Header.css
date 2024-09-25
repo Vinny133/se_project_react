@@ -17,10 +17,11 @@
 
 .header__date-and-location {
   margin: 0;
+  margin-right: auto;
 }
 
 .header__add-button {
-  margin: 0 20px 0 auto;
+  margin: 0 20px 0 20px;
   border: none;
   cursor: pointer;
 }
@@ -29,6 +30,11 @@
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+.header__link {
+  text-decoration: none;
+  color: black;
 }
 
 .header__username {
