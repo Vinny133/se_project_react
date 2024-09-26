@@ -149,6 +149,12 @@
       "imageUrl": "https://studios-tc.com/wp-content/uploads/2021/10/oversize-hoodie-black-back.jpg",
       "weather": "hot",
       "_id": 26
+    },
+    {
+      "name": "pennsylvania",
+      "imageUrl": "https://studios-tc.com/wp-content/uploads/2021/10/oversize-hoodie-black-back.jpg",
+      "weather": "cold",
+      "_id": 27
     }
   ]
 }

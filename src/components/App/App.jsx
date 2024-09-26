@@ -11,7 +11,7 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { coordinates, APIkey } from "../../utils/constants";
 import { CurrentTemperatureUnitContext } from "../Contexts/CurrentTemperatureUnitContext";
-import { getItems, postItems } from "../../utils/api";
+import { getItems, postItems, deleteItems } from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -57,6 +57,23 @@ function App() {
       });
   };
 
+  const handleDelete = (card) => {
+    card = selectedCard;
+    console.log(card._id);
+
+    deleteItems(card._id)
+      .then(() => {
+        const updatedItems = clothingItems.filter(
+          (item) => item._id !== card._id
+        );
+        setClothingItems(updatedItems);
+        closeActiveModal();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
@@ -65,6 +82,9 @@ function App() {
   const closeActiveModal = () => {
     setActiveModal("");
     console.log("closed");
+    if (activeModal === "add-garment") {
+      setSelectedButton("");
+    }
   };
 
   useEffect(() => {
@@ -105,7 +125,14 @@ function App() {
             />
             <Route
               path="/profile"
-              element={<Profile handleCardClick={handleCardClick} />}
+              element={
+                <Profile
+                  weatherData={weatherData}
+                  handleCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                  handleAddClick={handleAddClick}
+                />
+              }
             />
           </Routes>
 
@@ -124,6 +151,7 @@ function App() {
           activeModal={activeModal}
           card={selectedCard}
           onClose={closeActiveModal}
+          handleDelete={handleDelete}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>

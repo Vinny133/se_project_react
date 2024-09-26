@@ -24,9 +24,19 @@
 
 .switch__slider-C {
   left: 28px;
+  transition: translate 0.2s linear;
+}
+
+.switch__slider-C:hover {
+  translate: 2px;
 }
 
 .switch__slider-F {
+  transition: translate 0.2s linear;
+}
+
+.switch__slider-F:hover {
+  translate: -2px;
 }
 
 .switch__temp-C {
@@ -48,4 +58,5 @@
 .switch__active {
   color: white;
   opacity: 1;
+  cursor: pointer;
 }

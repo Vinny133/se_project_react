@@ -29,6 +29,9 @@ const AddItemModal = ({
     onAddItem({ name, imageUrl: link, weather: selectedButton });
 
     onClose();
+
+    setName("");
+    setUrl("");
   };
 
   return (

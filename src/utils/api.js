@@ -22,6 +22,15 @@ function postItems({ name, imageUrl, weather }) {
   });
 }
 
-function deleteItems() {}
+function deleteItems(cardID) {
+  return fetch(`${baseUrl}/items/${cardID}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((res) => {
+    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+  });
+}
 
-export { getItems, postItems };
+export { getItems, postItems, deleteItems };

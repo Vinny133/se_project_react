@@ -10,6 +10,7 @@
 
 .modal__footer {
   padding: 20px 32px 32px;
+  position: relative;
 }
 
 .modal__weather {
@@ -26,4 +27,15 @@
   height: 498px;
   object-fit: cover;
   border-radius: 16px 16px 0 0;
+}
+
+.modal__delete {
+  border: none;
+  background: transparent;
+  padding: 0;
+  color: #ff4d00;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 32px;
 }
