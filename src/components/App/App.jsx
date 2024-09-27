@@ -25,8 +25,6 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [name, setName] = useState("");
-  const [link, setUrl] = useState("");
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -45,15 +43,14 @@ function App() {
     setClothingItems([newItem, ...clothingItems]);
   };
 
-  const onAddItem = (newItem) => {
+  const onAddItem = (newItem, resetForm) => {
     console.log(newItem);
     setIsLoading(true);
 
     postItems(newItem)
       .then((res) => {
         console.log(res);
-        setName("");
-        setUrl("");
+        resetForm();
 
         handleAddItemSubmit(res);
         closeActiveModal();
@@ -94,6 +91,22 @@ function App() {
       setSelectedButton("");
     }
   };
+
+  useEffect(() => {
+    if (!activeModal) return;
+
+    const handleEscClose = (e) => {
+      if (e.key === "Escape") {
+        closeActiveModal();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscClose);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [activeModal]);
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
@@ -154,10 +167,6 @@ function App() {
           handleButtonClick={handleButtonClick}
           selectedButton={selectedButton}
           onAddItem={onAddItem}
-          name={name}
-          setName={setName}
-          link={link}
-          setUrl={setUrl}
         ></AddItemModal>
         <ItemModal
           activeModal={activeModal}

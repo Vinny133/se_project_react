@@ -9,11 +9,10 @@ const AddItemModal = ({
   title,
   selectedButton,
   onAddItem,
-  name,
-  setName,
-  link,
-  setUrl,
 }) => {
+  const [name, setName] = useState("");
+  const [link, setUrl] = useState("");
+
   const handleNameChange = (e) => {
     console.log(e.target.value);
     setName(e.target.value);
@@ -24,9 +23,14 @@ const AddItemModal = ({
     setUrl(e.target.value);
   };
 
+  const resetForm = () => {
+    setName("");
+    setUrl("");
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddItem({ name, imageUrl: link, weather: selectedButton });
+    onAddItem({ name, imageUrl: link, weather: selectedButton }, resetForm);
   };
 
   return (

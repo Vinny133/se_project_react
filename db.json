@@ -103,70 +103,16 @@
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
     },
     {
-      "name": "",
-      "_id": 17
-    },
-    {
-      "name": "pennsylvania",
-      "_id": 18
-    },
-    {
-      "name": "pennsylvania",
-      "_id": 19
-    },
-    {
-      "name": "pennsylvania",
-      "_id": 20
-    },
-    {
-      "name": "pennsylvania",
-      "_id": 21
-    },
-    {
-      "name": "pennsylvania",
-      "_id": 22
-    },
-    {
-      "name": "pennsylvania",
-      "imageUrl": "https://studios-tc.com/wp-content/uploads/2021/10/oversize-hoodie-black-back.jpg",
-      "weather": "hot",
-      "_id": 23
-    },
-    {
-      "name": "pennsylvania",
-      "imageUrl": "https://studios-tc.com/wp-content/uploads/2021/10/oversize-hoodie-black-back.jpg",
-      "weather": "hot",
-      "_id": 24
-    },
-    {
-      "name": "Vinny",
-      "imageUrl": "https://studios-tc.com/wp-content/uploads/2021/10/oversize-hoodie-black-back.jpg",
-      "weather": "hot",
-      "_id": 25
-    },
-    {
-      "name": "Vinny",
-      "imageUrl": "https://studios-tc.com/wp-content/uploads/2021/10/oversize-hoodie-black-back.jpg",
-      "weather": "hot",
-      "_id": 26
-    },
-    {
-      "name": "pennsylvania",
-      "imageUrl": "https://studios-tc.com/wp-content/uploads/2021/10/oversize-hoodie-black-back.jpg",
-      "weather": "cold",
-      "_id": 27
-    },
-    {
-      "name": "",
-      "imageUrl": "",
-      "weather": "",
-      "_id": 29
-    },
-    {
       "name": "Kirby shirt",
       "imageUrl": "https://target.scene7.com/is/image/Target/GUEST_7f9b3b55-db33-4d41-b486-477ac6add64a?wid=488&hei=488&fmt=pjpeg",
       "weather": "warm",
       "_id": 30
+    },
+    {
+      "name": "Mario shirt",
+      "imageUrl": "https://target.scene7.com/is/image/Target/GUEST_6b90096a-01c7-4474-a35e-2add446b41f2?wid=488&hei=488&fmt=pjpeg",
+      "weather": "warm",
+      "_id": 31
     }
   ]
 }
