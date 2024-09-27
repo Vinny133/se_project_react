@@ -155,6 +155,18 @@
       "imageUrl": "https://studios-tc.com/wp-content/uploads/2021/10/oversize-hoodie-black-back.jpg",
       "weather": "cold",
       "_id": 27
+    },
+    {
+      "name": "",
+      "imageUrl": "",
+      "weather": "",
+      "_id": 29
+    },
+    {
+      "name": "Kirby shirt",
+      "imageUrl": "https://target.scene7.com/is/image/Target/GUEST_7f9b3b55-db33-4d41-b486-477ac6add64a?wid=488&hei=488&fmt=pjpeg",
+      "weather": "warm",
+      "_id": 30
     }
   ]
 }

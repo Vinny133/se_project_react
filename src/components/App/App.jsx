@@ -24,6 +24,9 @@ function App() {
   const [selectedButton, setSelectedButton] = useState("");
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [name, setName] = useState("");
+  const [link, setUrl] = useState("");
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -44,27 +47,32 @@ function App() {
 
   const onAddItem = (newItem) => {
     console.log(newItem);
+    setIsLoading(true);
 
     postItems(newItem)
       .then((res) => {
         console.log(res);
+        setName("");
+        setUrl("");
 
         handleAddItemSubmit(res);
         closeActiveModal();
       })
       .catch((err) => {
         console.error(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
-  const handleDelete = (card) => {
-    card = selectedCard;
-    console.log(card._id);
+  const handleDelete = () => {
+    console.log(selectedCard._id);
 
-    deleteItems(card._id)
+    deleteItems(selectedCard._id)
       .then(() => {
         const updatedItems = clothingItems.filter(
-          (item) => item._id !== card._id
+          (item) => item._id !== selectedCard._id
         );
         setClothingItems(updatedItems);
         closeActiveModal();
@@ -140,12 +148,16 @@ function App() {
         </div>
         <AddItemModal
           title="New garment"
-          buttonText="Add garment"
+          buttonText={isLoading ? "Saving..." : "Add garment"}
           isOpen={activeModal === "add-garment"}
           onClose={closeActiveModal}
           handleButtonClick={handleButtonClick}
           selectedButton={selectedButton}
           onAddItem={onAddItem}
+          name={name}
+          setName={setName}
+          link={link}
+          setUrl={setUrl}
         ></AddItemModal>
         <ItemModal
           activeModal={activeModal}

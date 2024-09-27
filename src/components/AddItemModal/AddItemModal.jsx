@@ -9,15 +9,15 @@ const AddItemModal = ({
   title,
   selectedButton,
   onAddItem,
+  name,
+  setName,
+  link,
+  setUrl,
 }) => {
-  const [name, setName] = useState("");
-
   const handleNameChange = (e) => {
     console.log(e.target.value);
     setName(e.target.value);
   };
-
-  const [link, setUrl] = useState("");
 
   const handleUrlChange = (e) => {
     console.log(e.target.value);
@@ -27,11 +27,6 @@ const AddItemModal = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     onAddItem({ name, imageUrl: link, weather: selectedButton });
-
-    onClose();
-
-    setName("");
-    setUrl("");
   };
 
   return (
