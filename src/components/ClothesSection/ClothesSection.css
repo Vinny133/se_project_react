@@ -12,3 +12,8 @@
   color: rgba(0, 0, 0, 0.6);
   cursor: pointer;
 }
+
+.clothes-section__empty {
+  text-align: center;
+  color: gray;
+}

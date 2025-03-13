@@ -1,6 +1,7 @@
 import "./ClothesSection.css";
-// import { defaultClothingItems } from "../../utils/constants";
 import ItemCard from "../ItemCard/ItemCard";
+import { useContext } from "react";
+import CurrentUserContext from "../../Contexts/CurrentUserContext";
 
 function ClothesSection({
   onCardClick,
@@ -8,6 +9,12 @@ function ClothesSection({
   weatherData,
   handleAddClick,
 }) {
+  const currentUser = useContext(CurrentUserContext);
+
+  const userClothingItems = clothingItems.filter(
+    (item) => item.owner === currentUser?._id
+  );
+
   return (
     <div className="clothes-section">
       <div className="clothes-section__header">
@@ -16,13 +23,20 @@ function ClothesSection({
           +Add new
         </button>
       </div>
-      <ul className="cards__list">
-        {clothingItems.map((item) => {
-          return (
-            <ItemCard key={item._id} item={item} onCardClick={onCardClick} />
-          );
-        })}
-      </ul>
+
+      {userClothingItems.length > 0 ? (
+        <ul className="cards__list">
+          {userClothingItems.map((item) => {
+            return (
+              <ItemCard key={item._id} item={item} onCardClick={onCardClick} />
+            );
+          })}
+        </ul>
+      ) : (
+        <p className="clothes-section__empty">
+          You haven’t added any items yet.
+        </p>
+      )}
     </div>
   );
 }

@@ -39,3 +39,7 @@
   top: 20px;
   right: 32px;
 }
+
+.modal__delete-button_hidden {
+  display: none;
+}

@@ -1,3 +1,5 @@
+import { json } from "react-router-dom";
+
 const baseUrl = "http://localhost:3001";
 
 function checkResponse(res) {
@@ -13,6 +15,7 @@ function postItems({ name, imageUrl, weather }) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
       name,
@@ -27,8 +30,20 @@ function deleteItems(cardID) {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
   }).then(checkResponse);
 }
 
-export { getItems, postItems, deleteItems, checkResponse };
+function updateUser(token, { name, avatar }) {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ name, avatar }),
+  }).then(checkResponse);
+}
+
+export { getItems, postItems, deleteItems, updateUser, checkResponse };
