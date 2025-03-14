@@ -93,11 +93,26 @@ function App() {
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
   };
 
+  function getUserInfo() {
+    const token = localStorage.getItem("jwt");
+    if (token) {
+      checkToken(token)
+        .then((res) => {
+          if (res.user) {
+            setUser(res.user);
+            setIsLoggedIn(true);
+          }
+        })
+        .catch((err) => console.error("Token verification failed:", err));
+    }
+  }
+
   const handleRegister = async (formData) => {
     try {
       const res = await register(formData);
       if (res.token) {
         localStorage.setItem("jwt", res.token);
+        handleLogin(formData);
         setUser(res.user);
         setActiveModal("");
         navigate("/profile");
@@ -113,9 +128,11 @@ function App() {
       if (res.token) {
         localStorage.setItem("jwt", res.token);
         setUser(res.user);
-        console.log("User after login:", res.user);
+        setIsLoggedIn(true);
+        getUserInfo();
         setActiveModal("");
         navigate("/profile");
+        console.log("User after login:", res.user);
       }
     } catch (error) {
       console.error("Login failed:", error);
@@ -123,17 +140,7 @@ function App() {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("jwt");
-    if (token) {
-      checkToken(token)
-        .then((res) => {
-          if (res.user) {
-            setUser(res.user);
-            setIsLoggedIn(true);
-          }
-        })
-        .catch((err) => console.error("Token verification failed:", err));
-    }
+    getUserInfo();
   }, []);
 
   const handleLogout = () => {
