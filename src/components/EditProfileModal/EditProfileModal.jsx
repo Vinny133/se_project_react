@@ -46,7 +46,7 @@ function EditProfileModal({
       onSubmit={handleSubmit}
     >
       <label htmlFor="name" className="modal__label">
-        Email{" "}
+        Name{" "}
         <input
           type="text"
           className="modal__input"
@@ -54,10 +54,11 @@ function EditProfileModal({
           placeholder="Name"
           value={name}
           onChange={handleNameChange}
+          required={true}
         />
       </label>
       <label htmlFor="avatar" className="modal__label">
-        Name
+        Avatar
         <input
           type="avatar"
           className="modal__input"
@@ -65,6 +66,7 @@ function EditProfileModal({
           placeholder="Avatar"
           value={avatar}
           onChange={handleAvatarChange}
+          required={true}
         />
       </label>
     </ModalWithForm>

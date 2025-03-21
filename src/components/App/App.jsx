@@ -98,8 +98,8 @@ function App() {
     if (token) {
       checkToken(token)
         .then((res) => {
-          if (res.user) {
-            setUser(res.user);
+          if (res) {
+            setUser(res);
             setIsLoggedIn(true);
           }
         })
@@ -112,8 +112,9 @@ function App() {
       const res = await register(formData);
       if (res.token) {
         localStorage.setItem("jwt", res.token);
-        handleLogin(formData);
-        setUser(res.user);
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        console.log(res);
+        getUserInfo();
         setActiveModal("");
         navigate("/profile");
       }
@@ -127,12 +128,9 @@ function App() {
       const res = await login(formData);
       if (res.token) {
         localStorage.setItem("jwt", res.token);
-        setUser(res.user);
-        setIsLoggedIn(true);
-        getUserInfo();
         setActiveModal("");
         navigate("/profile");
-        console.log("User after login:", res.user);
+        console.log("User after login:", formData);
       }
     } catch (error) {
       console.error("Login failed:", error);
@@ -141,7 +139,7 @@ function App() {
 
   useEffect(() => {
     getUserInfo();
-  }, []);
+  }, [isLoggedIn]);
 
   const handleLogout = () => {
     localStorage.removeItem("jwt");

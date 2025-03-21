@@ -46,7 +46,7 @@ const LoginModal = ({
         />
       </label>
       <label htmlFor="password" className="modal__label">
-        Name
+        Password
         <input
           type="password"
           className="modal__input"

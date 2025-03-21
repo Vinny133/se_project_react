@@ -14,6 +14,8 @@ const RegisterModal = ({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  console.log(onRegister);
+
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
@@ -32,6 +34,8 @@ const RegisterModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("Register form submitted");
+
     onRegister({ name, avatar, email, password });
   };
 
@@ -78,7 +82,7 @@ const RegisterModal = ({
         />
       </label>
       <label htmlFor="password" className="modal__label">
-        Name
+        Password
         <input
           type="password"
           className="modal__input"
