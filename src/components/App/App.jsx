@@ -17,6 +17,8 @@ import { CurrentTemperatureUnitContext } from "../../Contexts/CurrentTemperature
 import { getItems, postItems, deleteItems } from "../../utils/api";
 import { register, login, checkToken } from "../../utils/auth";
 import CurrentUserContext from "../../Contexts/CurrentUserContext";
+import { setToken, getToken, removeToken } from "../../utils/token";
+import * as auth from "../../utils/auth";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -40,8 +42,8 @@ function App() {
     setSelectedCard(card);
   };
 
-  const handleAddClick = (e) => {
-    setActiveModal(e);
+  const handleAddClick = (modalType) => {
+    setActiveModal(modalType);
   };
 
   const handleButtonClick = (evt) => {
@@ -94,29 +96,27 @@ function App() {
   };
 
   function getUserInfo() {
-    const token = localStorage.getItem("jwt");
-    if (token) {
-      checkToken(token)
-        .then((res) => {
-          if (res) {
-            setUser(res);
-            setIsLoggedIn(true);
-          }
-        })
-        .catch((err) => console.error("Token verification failed:", err));
+    const token = getToken();
+
+    if (!token) {
+      return;
     }
+
+    auth
+      .checkToken(token)
+      .then(({ name, avatar }) => {
+        setIsLoggedIn(true);
+        setUser({ name, avatar });
+        navigate("/profile");
+      })
+      .catch(console.error);
   }
 
   const handleRegister = async (formData) => {
     try {
       const res = await register(formData);
-      if (res.token) {
-        localStorage.setItem("jwt", res.token);
-        await new Promise((resolve) => setTimeout(resolve, 500));
-        console.log(res);
-        getUserInfo();
-        setActiveModal("");
-        navigate("/profile");
+      if (res) {
+        handleLogin(formData);
       }
     } catch (error) {
       console.error("Registration Failed: ", error);
@@ -127,9 +127,10 @@ function App() {
     try {
       const res = await login(formData);
       if (res.token) {
-        localStorage.setItem("jwt", res.token);
+        setToken(res.token);
         setActiveModal("");
-        navigate("/profile");
+        getUserInfo();
+
         console.log("User after login:", formData);
       }
     } catch (error) {
@@ -139,10 +140,10 @@ function App() {
 
   useEffect(() => {
     getUserInfo();
-  }, [isLoggedIn]);
+  }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("jwt");
+    removeToken();
     setUser(null);
     setIsLoggedIn(false);
     navigate("/");
@@ -197,7 +198,11 @@ function App() {
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
         >
           <div className="page__content">
-            <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+            <Header
+              handleAddClick={handleAddClick}
+              weatherData={weatherData}
+              isLoggedIn={isLoggedIn}
+            />
             <Routes>
               <Route
                 path="/"

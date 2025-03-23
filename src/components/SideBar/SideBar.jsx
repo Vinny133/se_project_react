@@ -28,8 +28,10 @@ function SideBar({ handleLogout }) {
 
   return (
     <div className="sidebar">
-      <img className="sidebar__avatar" src={user?.avatar} alt="Avatar" />
-      <p className="sidebar__username">{user?.name}</p>
+      <div className="sidebar__user-data">
+        <img className="sidebar__avatar" src={user?.avatar} alt="Avatar" />
+        <p className="sidebar__username">{user?.name}</p>
+      </div>
 
       <button className="sidebar__edit-button" onClick={handleEditClick}>
         Change profile data
@@ -40,6 +42,8 @@ function SideBar({ handleLogout }) {
       </button>
 
       <EditProfileModal
+        title="Change profile data"
+        buttonText="Save changes"
         isOpen={isEditModalOpen}
         onClose={handleCloseModal}
         onUpdateUser={handleUpdateUser}

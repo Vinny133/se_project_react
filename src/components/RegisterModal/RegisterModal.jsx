@@ -14,8 +14,6 @@ const RegisterModal = ({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  console.log(onRegister);
-
   const handleNameChange = (e) => {
     setName(e.target.value);
   };

@@ -6,13 +6,13 @@ import { Link } from "react-router-dom";
 import CurrentUserContext from "../../Contexts/CurrentUserContext";
 import { useContext } from "react";
 
-function Header({ handleAddClick, weatherData, isLoggedIn, handleLogout }) {
+function Header({ handleAddClick, weatherData, isLoggedIn }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
 
-  const currentUser = useContext(CurrentUserContext);
+  const { user: currentUser } = useContext(CurrentUserContext);
 
   return (
     <header className="header">
@@ -25,10 +25,10 @@ function Header({ handleAddClick, weatherData, isLoggedIn, handleLogout }) {
       </p>
       <ToggleSwitch />
 
-      {isLoggedIn ? (
+      {isLoggedIn && currentUser ? (
         <>
           <button
-            onClick={handleAddClick}
+            onClick={() => handleAddClick("add-garment")}
             type="button"
             className="header__add-button"
           >
@@ -37,8 +37,8 @@ function Header({ handleAddClick, weatherData, isLoggedIn, handleLogout }) {
 
           <div className="header__user">
             <Link to="/profile" className="header__link">
-              <p className="header__username">{currentUser?.name || "User"}</p>
-              {currentUser?.avatar ? (
+              <p className="header__username">{currentUser.name}</p>
+              {currentUser.avatar ? (
                 <img
                   src={currentUser.avatar}
                   alt={currentUser.name}
@@ -46,14 +46,10 @@ function Header({ handleAddClick, weatherData, isLoggedIn, handleLogout }) {
                 />
               ) : (
                 <div className="header__avatar-placeholder">
-                  {currentUser?.name?.charAt(0).toUpperCase() || "?"}
+                  {currentUser.name?.charAt(0).toUpperCase()}
                 </div>
               )}
             </Link>
-
-            <button onClick={handleLogout} className="header__logout-button">
-              Logout
-            </button>
           </div>
         </>
       ) : (

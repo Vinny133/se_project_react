@@ -9,17 +9,27 @@ function ClothesSection({
   weatherData,
   handleAddClick,
 }) {
-  const currentUser = useContext(CurrentUserContext);
+  const { user: currentUser } = useContext(CurrentUserContext);
+
+  if (!currentUser) {
+    return null;
+  }
 
   const userClothingItems = clothingItems.filter(
-    (item) => item.owner === currentUser?._id
+    (item) => item.owner?.toString() === currentUser?._id?.toString()
   );
+
+  console.log("Current User ID:", currentUser?._id);
+  console.log("Clothing Items:", clothingItems);
 
   return (
     <div className="clothes-section">
       <div className="clothes-section__header">
         <p>Your items</p>
-        <button className="clothes-section__button" onClick={handleAddClick}>
+        <button
+          className="clothes-section__button"
+          onClick={() => handleAddClick("add-garment")}
+        >
           +Add new
         </button>
       </div>

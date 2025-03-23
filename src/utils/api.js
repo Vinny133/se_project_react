@@ -1,4 +1,5 @@
 import { json } from "react-router-dom";
+import { getToken } from "./token";
 
 const baseUrl = "http://localhost:3001";
 
@@ -11,6 +12,7 @@ function getItems() {
 }
 
 function postItems({ name, imageUrl, weather }) {
+  const token = getToken();
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
@@ -26,6 +28,7 @@ function postItems({ name, imageUrl, weather }) {
 }
 
 function deleteItems(cardID) {
+  const token = getToken();
   return fetch(`${baseUrl}/items/${cardID}`, {
     method: "DELETE",
     headers: {

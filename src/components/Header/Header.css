@@ -24,6 +24,7 @@
   margin: 0 20px 0 20px;
   border: none;
   cursor: pointer;
+  padding: 0;
 }
 
 .header__user {
@@ -35,10 +36,18 @@
 .header__link {
   text-decoration: none;
   color: black;
+  display: contents;
 }
 
 .header__username {
   margin: 0;
+}
+
+.header__avatar {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .header__auth-button {
