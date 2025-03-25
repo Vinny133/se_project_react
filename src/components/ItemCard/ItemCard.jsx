@@ -4,9 +4,8 @@ import CurrentUserContext from "../../Contexts/CurrentUserContext";
 
 function ItemCard({ item, onCardClick, onCardLike }) {
   const { user: currentUser } = useContext(CurrentUserContext);
-  const isLiked = item.likes.some(
-    (id) => String(id) === String(currentUser._id)
-  );
+  const isLiked =
+    currentUser && item.likes?.some((id) => id === currentUser._id);
 
   const handleCardClick = () => {
     onCardClick(item);
