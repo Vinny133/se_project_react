@@ -12,6 +12,7 @@ function Profile({
   handleAddClick,
   handleLogout,
   setUser,
+  onCardLike,
 }) {
   const { user } = useContext(CurrentUserContext);
 
@@ -26,6 +27,7 @@ function Profile({
           weatherData={weatherData}
           onCardClick={handleCardClick}
           clothingItems={clothingItems}
+          onCardLike={onCardLike}
         />
       </section>
     </div>

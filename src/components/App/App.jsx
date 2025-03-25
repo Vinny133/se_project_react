@@ -14,11 +14,18 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { coordinates, APIkey } from "../../utils/constants";
 import { CurrentTemperatureUnitContext } from "../../Contexts/CurrentTemperatureUnitContext";
-import { getItems, postItems, deleteItems } from "../../utils/api";
+import {
+  getItems,
+  postItems,
+  deleteItems,
+  addCardLike,
+  removeCardLike,
+} from "../../utils/api";
 import { register, login, checkToken } from "../../utils/auth";
 import CurrentUserContext from "../../Contexts/CurrentUserContext";
 import { setToken, getToken, removeToken } from "../../utils/token";
 import * as auth from "../../utils/auth";
+import * as api from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -104,13 +111,31 @@ function App() {
 
     auth
       .checkToken(token)
-      .then(({ name, avatar }) => {
+      .then((userData) => {
         setIsLoggedIn(true);
-        setUser({ name, avatar });
+        setUser(userData);
         navigate("/profile");
       })
       .catch(console.error);
   }
+
+  const handleCardLike = ({ id, isLiked }) => {
+    const token = getToken();
+
+    const likeRequest = isLiked
+      ? api.removeCardLike(id, token)
+      : api.addCardLike(id, token);
+
+    likeRequest
+      .then((updatedCard) => {
+        setClothingItems((cards) =>
+          cards.map((item) =>
+            item._id === updatedCard._id ? updatedCard : item
+          )
+        );
+      })
+      .catch((err) => console.log(err));
+  };
 
   const handleRegister = async (formData) => {
     try {
@@ -211,6 +236,7 @@ function App() {
                     weatherData={weatherData}
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
+                    onCardLike={handleCardLike}
                   />
                 }
               />
@@ -225,6 +251,7 @@ function App() {
                       handleCardClick={handleCardClick}
                       clothingItems={clothingItems}
                       handleAddClick={handleAddClick}
+                      onCardLike={handleCardLike}
                     />
                   </ProtectedRoute>
                 }

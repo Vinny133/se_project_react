@@ -8,6 +8,7 @@ function ClothesSection({
   clothingItems,
   weatherData,
   handleAddClick,
+  onCardLike,
 }) {
   const { user: currentUser } = useContext(CurrentUserContext);
 
@@ -38,7 +39,12 @@ function ClothesSection({
         <ul className="cards__list">
           {userClothingItems.map((item) => {
             return (
-              <ItemCard key={item._id} item={item} onCardClick={onCardClick} />
+              <ItemCard
+                key={item._id}
+                item={item}
+                onCardClick={onCardClick}
+                onCardLike={onCardLike}
+              />
             );
           })}
         </ul>

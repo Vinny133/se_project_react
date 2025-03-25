@@ -49,4 +49,32 @@ function updateUser(token, { name, avatar }) {
   }).then(checkResponse);
 }
 
-export { getItems, postItems, deleteItems, updateUser, checkResponse };
+function addCardLike(cardId, token) {
+  return fetch(`${baseUrl}/items/${cardId}/likes`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+}
+
+function removeCardLike(cardId, token) {
+  return fetch(`${baseUrl}/items/${cardId}/likes`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+}
+
+export {
+  getItems,
+  postItems,
+  deleteItems,
+  updateUser,
+  checkResponse,
+  addCardLike,
+  removeCardLike,
+};

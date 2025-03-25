@@ -3,7 +3,7 @@ import { useContext } from "react";
 import CurrentUserContext from "../../Contexts/CurrentUserContext";
 
 function ItemModal({ activeModal, onClose, card, handleDelete }) {
-  const currentUser = useContext(CurrentUserContext);
+  const { user: currentUser } = useContext(CurrentUserContext);
 
   const isOwn = currentUser && card.owner === currentUser._id;
 
@@ -13,7 +13,7 @@ function ItemModal({ activeModal, onClose, card, handleDelete }) {
         <button
           onClick={onClose}
           type="button"
-          className="modal__close"
+          className="modal__close modal__close_item"
         ></button>
         <img src={card.imageUrl} alt={card.name} className="modal__image" />
         <div className="modal__footer">

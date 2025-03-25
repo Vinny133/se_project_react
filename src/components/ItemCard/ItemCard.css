@@ -9,7 +9,7 @@
   position: absolute;
   top: 15px;
   margin: 0;
-  padding: 2px 21px;
+  padding: 2px 12px;
   color: #00000099;
   background-color: white;
   font-family: "CabinetGrotesk-Bold";
@@ -17,6 +17,7 @@
   font-style: normal;
   line-height: 20px;
   font-weight: 700;
+  border-radius: 10%;
 }
 
 .card__image {
@@ -24,4 +25,21 @@
   border-radius: 19px;
   border: 1px solid #0000004d;
   cursor: pointer;
+}
+
+.card__like-button {
+  position: absolute;
+  top: 20px;
+  right: 111px;
+  height: 15px;
+  width: 18px;
+  border: none;
+  background-image: url(../../assets/like-button.svg);
+  background-color: transparent;
+  background-size: contain;
+  cursor: pointer;
+}
+
+.card__like-button_active {
+  background-image: url(../../assets/State=Liked.svg);
 }
