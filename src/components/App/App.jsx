@@ -114,7 +114,7 @@ function App() {
       .then((userData) => {
         setIsLoggedIn(true);
         setUser(userData);
-        navigate("/profile");
+        navigate("/");
       })
       .catch(console.error);
   }
@@ -130,7 +130,7 @@ function App() {
       .then((updatedCard) => {
         setClothingItems((cards) =>
           cards.map((item) =>
-            item._id === updatedCard._id ? updatedCard : item
+            item._id === updatedCard.data._id ? updatedCard.data : item
           )
         );
       })
