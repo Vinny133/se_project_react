@@ -42,4 +42,4 @@ const checkToken = (token) => {
   }).then(checkResponse);
 };
 
-export { register, login, checkToken };
+export { register, login, checkToken, checkResponse };

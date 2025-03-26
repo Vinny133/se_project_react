@@ -1,0 +1,11 @@
+.modal__sign-in {
+  width: 86px;
+  height: 36px;
+  color: gray;
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  bottom: 36px;
+  left: 114px;
+  cursor: pointer;
+}

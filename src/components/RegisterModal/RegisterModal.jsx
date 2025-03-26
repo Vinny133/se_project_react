@@ -1,3 +1,4 @@
+import "./RegisterModal.css";
 import { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
@@ -8,6 +9,7 @@ const RegisterModal = ({
   buttonText,
   title,
   onRegister,
+  onSwitch,
 }) => {
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
@@ -46,7 +48,7 @@ const RegisterModal = ({
       handleButtonClick={handleButtonClick}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="name" className="modal__label">
+      <label className="modal__label">
         Name{" "}
         <input
           type="text"
@@ -57,7 +59,7 @@ const RegisterModal = ({
           onChange={handleNameChange}
         />
       </label>
-      <label htmlFor="avatar" className="modal__label">
+      <label className="modal__label">
         Avatar{" "}
         <input
           type="url"
@@ -68,7 +70,7 @@ const RegisterModal = ({
           onChange={handleAvatarChange}
         />
       </label>
-      <label htmlFor="email" className="modal__label">
+      <label className="modal__label">
         Email{" "}
         <input
           type="email"
@@ -79,7 +81,7 @@ const RegisterModal = ({
           onChange={handleEmailChange}
         />
       </label>
-      <label htmlFor="password" className="modal__label">
+      <label className="modal__label">
         Password
         <input
           type="password"
@@ -90,6 +92,9 @@ const RegisterModal = ({
           onChange={handlePasswordChange}
         />
       </label>
+      <button className="modal__log-in" onClick={onSwitch}>
+        or Log in
+      </button>
     </ModalWithForm>
   );
 };

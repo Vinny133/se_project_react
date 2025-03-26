@@ -11,7 +11,7 @@ function EditProfileModal({
   title,
   onUpdateUser,
 }) {
-  const currentUser = useContext(CurrentUserContext);
+  const { user: currentUser } = useContext(CurrentUserContext);
 
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
@@ -45,24 +45,24 @@ function EditProfileModal({
       handleButtonClick={handleButtonClick}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="name" className="modal__label">
+      <label className="modal__label">
         Name{" "}
         <input
           type="text"
           className="modal__input"
-          id="name"
+          id="edit-name"
           placeholder="Name"
           value={name}
           onChange={handleNameChange}
           required={true}
         />
       </label>
-      <label htmlFor="avatar" className="modal__label">
+      <label className="modal__label">
         Avatar
         <input
           type="avatar"
           className="modal__input"
-          id="avatar"
+          id="edit-avatar"
           placeholder="Avatar"
           value={avatar}
           onChange={handleAvatarChange}

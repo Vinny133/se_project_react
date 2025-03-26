@@ -1,11 +1,8 @@
 import { json } from "react-router-dom";
 import { getToken } from "./token";
+import { checkResponse } from "./auth";
 
 const baseUrl = "http://localhost:3001";
-
-function checkResponse(res) {
-  return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-}
 
 function getItems() {
   return fetch(`${baseUrl}/items`).then(checkResponse);

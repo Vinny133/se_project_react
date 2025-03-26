@@ -134,7 +134,7 @@ function App() {
           )
         );
       })
-      .catch((err) => console.log(err));
+      .catch(console.error);
   };
 
   const handleRegister = async (formData) => {
@@ -153,13 +153,22 @@ function App() {
       const res = await login(formData);
       if (res.token) {
         setToken(res.token);
-        setActiveModal("");
+        closeActiveModal();
         getUserInfo();
 
         console.log("User after login:", formData);
       }
     } catch (error) {
       console.error("Login failed:", error);
+    }
+  };
+
+  const handleSwitch = () => {
+    if (activeModal === "login") {
+      setActiveModal("register");
+    }
+    if (activeModal === "register") {
+      setActiveModal("login");
     }
   };
 
@@ -281,6 +290,7 @@ function App() {
             isOpen={activeModal === "register"}
             onClose={closeActiveModal}
             onRegister={handleRegister}
+            onSwitch={handleSwitch}
           />
           <LoginModal
             title="Log In"
@@ -288,6 +298,7 @@ function App() {
             isOpen={activeModal === "login"}
             onClose={closeActiveModal}
             onLogin={handleLogin}
+            onSwitch={handleSwitch}
           />
         </CurrentTemperatureUnitContext.Provider>
       </div>
