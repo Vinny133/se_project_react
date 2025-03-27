@@ -58,7 +58,7 @@ const LoginModal = ({
           onChange={handlePasswordChange}
         />
       </label>
-      <button className="modal__sign-in" onClick={onSwitch}>
+      <button className="modal__sign-in" onClick={onSwitch} type="button">
         or Sign up
       </button>
     </ModalWithForm>

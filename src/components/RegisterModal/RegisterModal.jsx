@@ -92,7 +92,7 @@ const RegisterModal = ({
           onChange={handlePasswordChange}
         />
       </label>
-      <button className="modal__log-in" onClick={onSwitch}>
+      <button className="modal__log-in" onClick={onSwitch} type="button">
         or Log in
       </button>
     </ModalWithForm>
