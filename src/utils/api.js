@@ -2,7 +2,7 @@ import { json } from "react-router-dom";
 import { getToken } from "./token";
 import { checkResponse } from "./auth";
 
-const baseUrl = "http://localhost:3001";
+import { baseUrl } from "../utils/constants";
 
 function getItems() {
   return fetch(`${baseUrl}/items`).then(checkResponse);
